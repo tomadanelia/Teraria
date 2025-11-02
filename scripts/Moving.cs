@@ -5,7 +5,7 @@ public partial class Moving : CharacterBody2D
 {
 	public const float Speed = 100.0f;
 
-	public enum PlayerState { Idle, Walk, Run, Jump, Attack1, Hurt, Death ,Defend}
+	public enum PlayerState { Idle, Walk, Run, Jump, Attack1, Hurt, Death ,Defend,Upwalk}
 	private PlayerState state = PlayerState.Idle;
 
 	private AnimatedSprite2D sprite;
@@ -49,6 +49,10 @@ public partial class Moving : CharacterBody2D
 				state=PlayerState.Defend;
 				isBusy=true;
 				sprite.Play("defend");
+			}
+			else if (direction.Length()>0 && Velocity.Y<0){
+				state=PlayerState.Upwalk;
+				sprite.Play("upwalk1");
 			}
 			else if (direction.Length() > 0)
 			{

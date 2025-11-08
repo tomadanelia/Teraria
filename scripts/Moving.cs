@@ -3,7 +3,9 @@ using System;
 
 public partial class Moving : CharacterBody2D
 {
-	public const float Speed = 100.0f;
+	
+	[Export] public  float Speed = 100.0f;
+
 
 	public enum PlayerState { Idle, Walk, Run, Jump, Attack1, Hurt, Death ,Defend,Upwalk}
 	private PlayerState state = PlayerState.Idle;
@@ -14,6 +16,8 @@ public partial class Moving : CharacterBody2D
 
 	public override void _Ready()
 	{
+			GD.Print(GlobalPosition.Y);
+
 		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	   sprite.AnimationFinished += () => OnAnimationFinished();
 	}
